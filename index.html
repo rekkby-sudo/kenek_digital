@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>kenek_digital — соцмережі, які приводять клієнтів</title>
+<meta name="description" content="Упаковка, контент і реклама в одній системі. Залиште заявку — повернемось з розбором профілю за 24 години.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #121317;
+    --ink-2: #1a1c22;
+    --ink-3: #23262d;
+    --line: rgba(255,255,255,.16);
+    --text: #f4f1ec;
+    --dim: #b9bcc4;
+    --orange: #ff6a1f;
+    --amber: #ffc43d;
+    --sans: "Onest", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html { background: #121317; }
+  .page { background: #121317; color: var(--text); min-height: 100vh; position: relative; overflow-x: hidden; }
+  body {
+    margin: 0;
+    background: #121317;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 6px; }
+
+  .wrap { width: min(1080px, 100% - 40px); margin-inline: auto; }
+  section { padding-block: clamp(64px, 11vw, 128px); background-color: #121317; }
+  section.services { background-color: #1a1c22; }
+
+  h1, h2, h3 { font-weight: 700; letter-spacing: -.02em; line-height: 1.05; margin: 0; }
+  h2 { font-size: clamp(32px, 6.4vw, 60px); max-width: 16ch; }
+  h3 { font-size: 20px; letter-spacing: -.01em; line-height: 1.2; }
+  em.serif { font-family: var(--serif); font-style: italic; font-weight: 600; color: #ff7a33; letter-spacing: -.01em; padding-right: .04em; }
+  p { margin: 0; }
+  .dim { color: var(--dim); }
+
+  /* ---------- header ---------- */
+  .top { position: absolute; inset: 0 0 auto 0; z-index: 5; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; padding-block: 20px; }
+  .logo { font-weight: 700; letter-spacing: -.02em; text-decoration: none; font-size: 18px; }
+  .logo span { color: var(--orange); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font: inherit; font-weight: 600; font-size: 16px;
+    padding: 15px 26px; border-radius: 999px; border: 0; cursor: pointer; text-decoration: none;
+    background: linear-gradient(180deg, #ff8a3c, var(--orange));
+    color: #1a0d03;
+    box-shadow: 0 8px 40px -8px rgba(255,106,31,.65), inset 0 1px 0 rgba(255,255,255,.35);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 48px -8px rgba(255,106,31,.8), inset 0 1px 0 rgba(255,255,255,.35); }
+  .btn.small { padding: 10px 18px; font-size: 14px; }
+  .btn.ghost { background: transparent; color: var(--text); box-shadow: inset 0 0 0 1px var(--line); }
+  .btn.ghost:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.3); }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; overflow: hidden; padding-top: 128px; padding-bottom: 0; text-align: center; }
+  .hero h1 { font-size: clamp(42px, 10.5vw, 104px); max-width: 12ch; margin-inline: auto; }
+  .hero .lead { max-width: 46ch; margin: 26px auto 0; color: #e3e1dc; font-size: clamp(17px, 2.4vw, 20px); }
+  .hero .cta { margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .hero .cta small { color: var(--dim); font-size: 14px; }
+
+  .stage { position: relative; margin-top: 64px; height: clamp(360px, 62vw, 560px); }
+  .glow {
+    position: absolute; left: 50%; bottom: -30%; width: 150%; aspect-ratio: 1.6;
+    transform: translateX(-50%);
+    background:
+      radial-gradient(ellipse at 50% 70%, rgba(255,196,61,.9) 0%, rgba(255,106,31,.7) 18%, rgba(190,60,10,.35) 40%, transparent 68%);
+    filter: blur(24px);
+    animation: breathe 6s ease-in-out infinite;
+  }
+  @keyframes breathe { 0%,100% { opacity: .85; } 50% { opacity: 1; } }
+
+  .phone {
+    position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+    width: min(360px, 82%); height: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+    border: 1px solid var(--line); border-bottom: 0;
+    border-radius: 34px 34px 0 0;
+    padding: 22px 20px 0;
+    backdrop-filter: blur(6px);
+    text-align: left;
+    overflow: hidden;
+  }
+  .phone .head { display: flex; gap: 14px; align-items: center; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; flex: none; background: radial-gradient(circle at 35% 30%, #ffb15c, var(--orange) 55%, #7a2a05); }
+  .phone .name { font-weight: 600; font-size: 15px; }
+  .phone .bio { color: var(--dim); font-size: 13px; line-height: 1.35; margin-top: 2px; }
+  .phone .stats { display: flex; gap: 8px; margin-top: 16px; }
+  .phone .stats i { flex: 1; height: 26px; border-radius: 8px; background: rgba(255,255,255,.06); }
+  .phone .hl { display: flex; gap: 10px; margin-top: 16px; }
+  .phone .hl i { flex: 1; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.07); }
+  .phone .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 18px; }
+  .phone .grid i { aspect-ratio: 4/5; border-radius: 10px; background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.03)); }
+  .phone .grid i:nth-child(2) { background: linear-gradient(180deg, rgba(255,160,70,.55), rgba(255,196,61,.9)); box-shadow: 0 0 60px rgba(255,150,40,.6); }
+
+  /* ---------- problems ---------- */
+  .problems h2 { margin-bottom: clamp(36px, 7vw, 72px); }
+  .pair {
+    display: grid; grid-template-columns: 1fr; gap: 14px;
+    padding-block: 28px; border-top: 1px solid var(--line);
+  }
+  .pair:last-child { border-bottom: 1px solid var(--line); }
+  .pair .label { font-size: 14px; color: #ff8a4a; margin-bottom: 6px; font-weight: 600; }
+  .pair .problem { color: #c9ccd3; font-size: clamp(18px, 2.6vw, 22px); line-height: 1.3; }
+  .pair .solution { color: var(--text); font-size: clamp(18px, 2.6vw, 22px); line-height: 1.3; }
+  @media (min-width: 760px) {
+    .pair { grid-template-columns: 1fr 1fr; gap: 56px; }
+  }
+
+  /* ---------- services (highlight circles) ---------- */
+  .services { background: var(--ink-2); }
+  .services h2 { margin-bottom: clamp(36px, 7vw, 64px); }
+  .circles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 18px; }
+  @media (min-width: 820px) { .circles { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
+  .circle-item { text-align: center; }
+  .disc {
+    position: relative; aspect-ratio: 5/4; border-radius: 22px; overflow: hidden;
+    display: grid; place-items: center;
+    font-weight: 700; font-size: clamp(18px, 3.4vw, 24px); letter-spacing: -.01em; color: #1a0d03;
+    background: radial-gradient(circle at 30% 20%, #ffa35c 0%, #ff6a1f 55%, #e24f0c 100%);
+  }
+  .disc::after { content: ""; position: absolute; inset: 0; border-radius: 22px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.35), inset 0 -30px 60px rgba(0,0,0,.12); }
+  .circle-item p { margin-top: 16px; color: var(--dim); font-size: 15px; line-height: 1.4; max-width: 24ch; margin-inline: auto; }
+
+  /* ---------- process ---------- */
+  .steps { display: grid; gap: 0; counter-reset: s; margin-top: clamp(36px, 7vw, 64px); }
+  .step { display: grid; grid-template-columns: 56px 1fr; gap: 6px 16px; padding-block: 26px; border-top: 1px solid var(--line); }
+  .step:last-child { border-bottom: 1px solid var(--line); }
+  .step b { font-family: var(--serif); font-style: italic; font-weight: 600; color: var(--orange); font-size: 36px; line-height: 1; grid-row: span 2; }
+  .step p { color: var(--dim); }
+  @media (min-width: 820px) {
+    .steps { grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .step { grid-template-columns: 1fr; border: 0 !important; border-top: 1px solid var(--line) !important; padding-top: 24px; }
+    .step b { grid-row: auto; margin-bottom: 18px; }
+  }
+
+  /* ---------- why ---------- */
+  .why-grid { display: grid; gap: 40px; }
+  @media (min-width: 820px) { .why-grid { grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; } }
+  .why-list { display: grid; gap: 28px; }
+  .why-list div { padding-left: 20px; border-left: 2px solid var(--orange); }
+  .why-list p { color: var(--dim); margin-top: 6px; }
+
+  /* ---------- form ---------- */
+  .signup { position: relative; overflow: hidden; }
+  .signup::before {
+    content: ""; position: absolute; left: 50%; top: 40%; width: 120%; aspect-ratio: 1.4; transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(255,106,31,.12), transparent 62%); pointer-events: none;
+  }
+  .signup .wrap { position: relative; }
+  .signup-grid { display: grid; gap: 40px; }
+  @media (min-width: 900px) { .signup-grid { grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; } }
+  .signup .intro p { margin-top: 20px; color: #e3e1dc; max-width: 40ch; }
+  .panel { background: rgba(26,28,34,.85); border: 1px solid var(--line); border-radius: 28px; padding: clamp(22px, 4vw, 36px); backdrop-filter: blur(8px); }
+  .field { display: grid; gap: 8px; margin-bottom: 18px; }
+  .field label { font-size: 14px; color: var(--dim); }
+  .field input, .field select, .field textarea {
+    font: inherit; color: var(--text); background: var(--ink); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 16px; width: 100%; transition: border-color .15s ease;
+  }
+  .field textarea { min-height: 96px; resize: vertical; }
+  .field input::placeholder, .field textarea::placeholder { color: #9396a0; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: 0; border-color: var(--orange); }
+  .field input[aria-invalid="true"] { border-color: #ff5a5a; }
+  .err { color: #ff8a8a; font-size: 13px; min-height: 0; }
+  .panel .btn { width: 100%; margin-top: 6px; }
+  .fine { color: var(--dim); font-size: 13px; text-align: center; margin-top: 14px; }
+
+  .hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+  .form-msg { color: #ff9a9a; font-size: 14px; text-align: center; margin-top: 12px; min-height: 0; }
+  #ts { margin-bottom: 14px; }
+  .btn[disabled] { opacity: .6; cursor: not-allowed; transform: none; }
+  .thanks { display: none; text-align: left; }
+  .thanks h3 { font-size: clamp(26px, 5vw, 36px); line-height: 1.1; }
+  .thanks p { color: #e3e1dc; margin-top: 14px; }
+  .thanks .btn { width: auto; margin-top: 24px; }
+  .panel.done form { display: none; }
+  .panel.done .thanks { display: block; }
+
+  footer { border-top: 1px solid var(--line); padding-block: 34px; color: var(--dim); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .glow { animation: none; }
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top">kenek<span>_</span>digital</a>
+    <a class="btn small" href="#signup">Залишити заявку</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Перший екран -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Соцмережі, які <em class="serif">приводять клієнтів</em>, а не лайки</h1>
+      <p class="lead">Ми упаковуємо ваш бізнес, робимо контент і запускаємо рекламу в одну систему. Ви отримуєте заявки, а не «гарну картинку».</p>
+      <div class="cta">
+        <a class="btn" href="#signup">Отримати безкоштовний розбір профілю</a>
+        <small>Відповімо за 24 години. Без зобов'язань.</small>
+      </div>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="phone">
+        <div class="head">
+          <div class="avatar"></div>
+          <div>
+            <div class="name">kenek_digital</div>
+            <div class="bio">Профіль, який працює як відділ продажів</div>
+          </div>
+        </div>
+        <div class="stats"><i></i><i></i><i></i></div>
+        <div class="hl"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Проблема → Рішення -->
+  <section class="problems">
+    <div class="wrap">
+      <h2>Знайомі проблеми? <em class="serif">Ми їх закриваємо</em></h2>
+
+      <div class="pair">
+        <div>
+          <div class="label">Проблема</div>
+          <p class="problem">Ви постите, але заявок немає.</p>
+        </div>
+        <div>
+          <div class="label">Рішення</div>
+          <p class="solution">Будуємо контент-стратегію під продажі: кожен пост має свою задачу — прогрів, довіра або заявка.</p>
+        </div>
+      </div>
+
+      <div class="pair">
+        <div>
+          <div class="label">Проблема</div>
+          <p class="problem">Профіль виглядає як набір випадкових постів.</p>
+        </div>
+        <div>
+          <div class="label">Рішення</div>
+          <p class="solution">Єдина візуальна мова, упаковка профілю та сітка, що вселяє довіру з першого погляду.</p>
+        </div>
+      </div>
+
+      <div class="pair">
+        <div>
+          <div class="label">Проблема</div>
+          <p class="problem">Реклама зливає бюджет.</p>
+        </div>
+        <div>
+          <div class="label">Рішення</div>
+          <p class="solution">Тестуємо креативи й аудиторії, вимикаємо те, що не працює, і масштабуємо те, що дає дешевих лідів.</p>
+        </div>
+      </div>
+
+      <div class="pair">
+        <div>
+          <div class="label">Проблема</div>
+          <p class="problem">Немає часу вести соцмережі.</p>
+        </div>
+        <div>
+          <div class="label">Рішення</div>
+          <p class="solution">Беремо все на себе: від ідеї до публікації. Вам лишається відповідати клієнтам.</p>
+        </div>
+      </div>
+
+      <div class="pair">
+        <div>
+          <div class="label">Проблема</div>
+          <p class="problem">Незрозуміло, що працює, а що ні.</p>
+        </div>
+        <div>
+          <div class="label">Рішення</div>
+          <p class="solution">Щомісячний звіт простою мовою: охоплення, заявки, ціна ліда й наступні кроки.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Послуги -->
+  <section class="services">
+    <div class="wrap">
+      <h2>Що ми <em class="serif">робимо</em></h2>
+      <div class="circles">
+        <div class="circle-item">
+          <div class="disc d1">SMM</div>
+          <p>Стратегія, контент-план і ведення профілю</p>
+        </div>
+        <div class="circle-item">
+          <div class="disc d2">Таргет</div>
+          <p>Реклама в Meta та TikTok на заявки</p>
+        </div>
+        <div class="circle-item">
+          <div class="disc d3">Контент</div>
+          <p>Reels, відеомонтаж та UGC</p>
+        </div>
+        <div class="circle-item">
+          <div class="disc d4">Воронки</div>
+          <p>Лендинги та шлях від трафіку до заявки</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Як працюємо -->
+  <section class="process">
+    <div class="wrap">
+      <h2>Як ми <em class="serif">працюємо</em></h2>
+      <div class="steps">
+        <div class="step">
+          <b>1</b>
+          <h3>Розбір</h3>
+          <p>Аналізуємо профіль, нішу й конкурентів.</p>
+        </div>
+        <div class="step">
+          <b>2</b>
+          <h3>Стратегія й упаковка</h3>
+          <p>Визначаємо, що і кому продаємо, і збираємо візуальну систему.</p>
+        </div>
+        <div class="step">
+          <b>3</b>
+          <h3>Запуск</h3>
+          <p>Стартують контент і реклама.</p>
+        </div>
+        <div class="step">
+          <b>4</b>
+          <h3>Масштабування</h3>
+          <p>Підсилюємо те, що дає результат.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 6. Чому kenek_digital -->
+  <section class="why">
+    <div class="wrap why-grid">
+      <h2>Чому <em class="serif">kenek_digital</em></h2>
+      <div class="why-list">
+        <div>
+          <h3>Команда під вашу задачу</h3>
+          <p>Таргетологи, відеомонтажери, UGC-креатори та AI-контент працюють разом, а не по черзі.</p>
+        </div>
+        <div>
+          <h3>Одна система замість хаосу</h3>
+          <p>Упаковка, контент, реклама й сайт збудовані як єдина воронка.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Форма -->
+  <section class="signup" id="signup">
+    <div class="wrap signup-grid">
+      <div class="intro">
+        <h2>Розкажіть про проєкт. <em class="serif">Повернемось з розбором за 24 години</em></h2>
+        <p>Заповніть коротку форму. Ми подивимось ваш профіль і напишемо, що змінити, щоб він почав приносити заявки.</p>
+      </div>
+
+      <div class="panel" id="panel">
+        <form id="lead" novalidate>
+          <div class="field">
+            <label for="name">Ім'я</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Як до вас звертатися" required>
+            <span class="err" id="err-name"></span>
+          </div>
+          <div class="field">
+            <label for="link">Посилання на Instagram або сайт</label>
+            <input id="link" name="link" type="text" placeholder="@ваш_профіль або https://..." required>
+            <span class="err" id="err-link"></span>
+          </div>
+          <div class="field">
+            <label for="niche">Ніша</label>
+            <input id="niche" name="niche" type="text" placeholder="Наприклад, салон краси, e-commerce, B2B">
+          </div>
+          <div class="field">
+            <label for="contact">Telegram або телефон</label>
+            <input id="contact" name="contact" type="text" autocomplete="tel" placeholder="@username або +380..." required>
+            <span class="err" id="err-contact"></span>
+          </div>
+          <div class="field">
+            <label for="budget">Бюджет на місяць</label>
+            <select id="budget" name="budget">
+              <option value="">Оберіть діапазон</option>
+              <option>до $500</option>
+              <option>$500–1 000</option>
+              <option>$1 000–3 000</option>
+              <option>понад $3 000</option>
+              <option>Ще не визначився</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="goal">Головна задача</label>
+            <textarea id="goal" name="goal" placeholder="Що хочете отримати: більше заявок, упаковку, рекламу..."></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="website">Не заповнюйте це поле</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div id="ts"></div>
+          <button class="btn" type="submit" id="send">Відправити заявку</button>
+          <p class="form-msg" id="form-msg" role="alert"></p>
+          <p class="fine">Натискаючи кнопку, ви погоджуєтесь на зв'язок з вами щодо заявки.</p>
+        </form>
+
+        <div class="thanks" role="status" aria-live="polite">
+          <h3>Дякуємо!</h3>
+          <p>Заявку отримано. Напишемо вам у Telegram протягом 24 годин.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>kenek_digital</span>
+  </div>
+</footer>
+</div>
+
+<script>
+  /* ================= НАЛАШТУВАННЯ ================= */
+  // Куди надсилати заявки (n8n webhook, Make, Formspree, Google Apps Script).
+  // Порожньо = форма лише показує «Дякуємо» і нічого не відправляє.
+  const FORM_ENDPOINT = "";
+  // Cloudflare Turnstile (безкоштовна капча). Вставте Site Key, щоб увімкнути.
+  const TURNSTILE_SITEKEY = "";
+  const MIN_FILL_SECONDS = 5;   // швидше за це людина форму не заповнить
+  const COOLDOWN_SECONDS = 60;  // пауза між відправками з одного браузера
+  const MAX_PER_DAY = 3;        // ліміт заявок на добу з одного браузера
+  /* ================================================ */
+
+  const $ = (id) => document.getElementById(id);
+  const form = $("lead"), panel = $("panel"), msg = $("form-msg"), sendBtn = $("send");
+  const loadedAt = Date.now();
+
+  /* ---------- Джерело: звідки прийшла заявка ---------- */
+  function store(key, val) { try { if (val === undefined) return JSON.parse(localStorage.getItem(key) || "null"); localStorage.setItem(key, JSON.stringify(val)); } catch (e) { return null; } }
+
+  function detectSource() {
+    const q = new URLSearchParams(location.search);
+    const ua = navigator.userAgent || "";
+    const inIG = /Instagram/i.test(ua);                       // відкрито у вбудованому браузері Instagram
+    const refIG = /instagram\.com/i.test(document.referrer);  // перехід з instagram.com
+    let src = store("kd_src");
+    if (q.get("utm_source")) {
+      src = {
+        source: q.get("utm_source"),
+        medium: q.get("utm_medium") || "",
+        campaign: q.get("utm_campaign") || "",
+        content: q.get("utm_content") || ""
+      };
+      store("kd_src", src);
+    } else if (!src && (inIG || refIG)) {
+      src = { source: "instagram", medium: inIG ? "in_app_browser" : "referrer", campaign: "", content: "" };
+      store("kd_src", src);
+    }
+    src = src || { source: "direct", medium: "", campaign: "", content: "" };
+    return Object.assign({}, src, {
+      in_instagram_app: inIG ? "yes" : "no",
+      referrer: document.referrer || "",
+      landing_url: location.href
+    });
+  }
+  const sourceInfo = detectSource();
+
+  /* ---------- Turnstile (необов'язково) ---------- */
+  let tsToken = "";
+  if (TURNSTILE_SITEKEY) {
+    window.onTurnstileLoad = function () {
+      turnstile.render("#ts", { sitekey: TURNSTILE_SITEKEY, theme: "dark", callback: (t) => { tsToken = t; } });
+    };
+    const sc = document.createElement("script");
+    sc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit";
+    sc.async = true; document.head.appendChild(sc);
+  }
+
+  /* ---------- Валідація ---------- */
+  const looksLikeContact = (v) => {
+    v = v.trim();
+    if (/^@[a-zA-Z0-9._]{3,32}$/.test(v)) return true;
+    if (/^(https?:\/\/)?t\.me\/[a-zA-Z0-9_]{3,32}$/.test(v)) return true;
+    const digits = v.replace(/\D/g, "");
+    return /^[+\d][\d\s()\-]{8,}$/.test(v) && digits.length >= 9 && digits.length <= 15;
+  };
+  const looksLikeLink = (v) => /^@[a-zA-Z0-9._]{2,30}$/.test(v.trim()) || /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/\S*)?$/i.test(v.trim());
+  const linkCount = (v) => (v.match(/https?:\/\/|www\./gi) || []).length;
+
+  const checks = {
+    name:    (v) => v.trim().length >= 2 && v.length <= 60 && !/https?:\/\/|www\./i.test(v) ? "" : "Вкажіть ім'я (без посилань)",
+    link:    (v) => looksLikeLink(v) ? "" : "Вкажіть @профіль або посилання на сайт",
+    contact: (v) => looksLikeContact(v) ? "" : "Вкажіть Telegram (@username) або телефон"
+  };
+
+  function fail(text) { msg.textContent = text; sendBtn.disabled = false; }
+  function success() { panel.classList.add("done"); panel.scrollIntoView({ behavior: "smooth", block: "center" }); }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msg.textContent = "";
+
+    let ok = true, firstBad = null;
+    for (const id in checks) {
+      const input = $(id), err = $("err-" + id);
+      const text = checks[id](input.value);
+      input.setAttribute("aria-invalid", text ? "true" : "false");
+      err.textContent = text;
+      if (text) { ok = false; firstBad = firstBad || input; }
+    }
+    if (!ok) { firstBad.focus(); return; }
+
+    const goal = $("goal").value, niche = $("niche").value;
+    if (goal.length > 1000 || niche.length > 120 || linkCount(goal) > 1 || linkCount(niche) > 0) {
+      return fail("Приберіть зайві посилання з тексту й скоротіть повідомлення.");
+    }
+
+    // Пастки для ботів: показуємо «успіх», але нічого не відправляємо
+    const tooFast = (Date.now() - loadedAt) < MIN_FILL_SECONDS * 1000;
+    if ($("website").value || tooFast) { return success(); }
+
+    // Ліміти з одного браузера
+    const now = Date.now();
+    const log = (store("kd_sent") || []).filter((t) => now - t < 86400000);
+    if (log.length && now - log[log.length - 1] < COOLDOWN_SECONDS * 1000) return fail("Заявку вже відправлено. Спробуйте за хвилину.");
+    if (log.length >= MAX_PER_DAY) return fail("Забагато заявок з цього пристрою. Напишіть нам в Instagram: @kenek_digital");
+
+    if (TURNSTILE_SITEKEY && !tsToken) return fail("Підтвердіть, що ви не робот, і відправте ще раз.");
+
+    sendBtn.disabled = true;
+    const data = Object.assign(Object.fromEntries(new FormData(form).entries()), sourceInfo, {
+      fill_seconds: Math.round((now - loadedAt) / 1000),
+      "cf-turnstile-response": tsToken
+    });
+    delete data.website;
+
+    if (FORM_ENDPOINT) {
+      try {
+        const r = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(data)
+        });
+        if (!r.ok) throw new Error(r.status);
+      } catch (err) {
+        return fail("Не вдалося відправити заявку. Напишіть нам в Instagram: @kenek_digital");
+      }
+    }
+    log.push(now); store("kd_sent", log);
+    success();
+  });
+</script>
+</body>
+</html>
